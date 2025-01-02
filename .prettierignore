@@ -1,0 +1,13 @@
+.next
+node_modules
+.vscode
+.editorconfig
+.git
+pnpm-lock.yaml
+package-lock.json
+.vercel
+*.json
+*.min.js
+dist/
+public/
+*.d.ts
