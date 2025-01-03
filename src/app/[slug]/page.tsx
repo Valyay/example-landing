@@ -7,8 +7,12 @@ export async function generateStaticParams() {
 	return news.map((item) => ({ slug: item.slug }));
 }
 
-export default function NewPage({ params }: { params: { slug: string } }) {
-	const { slug } = params;
+export default async function NewPage({
+	params,
+}: {
+	params: { slug: string };
+}) {
+	const { slug } = await params;
 	const article = getNewsBySlug(slug);
 
 	return (
