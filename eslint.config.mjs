@@ -1,4 +1,5 @@
 import { FlatCompat } from "@eslint/eslintrc";
+import eslintPluginTailwind from "eslint-plugin-tailwindcss";
 
 const compat = new FlatCompat({
 	baseDirectory: import.meta.dirname,
@@ -13,6 +14,7 @@ const eslintConfig = [
 			},
 		},
 	}),
+	...eslintPluginTailwind.configs["flat/recommended"],
 ];
 
 export default eslintConfig;

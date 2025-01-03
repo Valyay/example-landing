@@ -7,11 +7,11 @@ export default function Page() {
 	const news = getAllNews();
 
 	return (
-		<div className="max-w-3xl mx-auto px-4 py-8">
-			<h1 className="text-3xl font-bold mb-6">Latest News</h1>
+		<div className="mx-auto max-w-3xl px-4 py-8">
+			<h1 className="mb-6 text-3xl font-bold">Latest News</h1>
 			<ul className="space-y-6">
 				{news.map((item: NewsMeta) => (
-					<li key={item.slug} className="bg-white rounded-lg shadow p-4">
+					<li key={item.slug} className="rounded-lg bg-white p-4 shadow">
 						<div className="mb-4">
 							<Image
 								src={item.imageUrl}
@@ -22,11 +22,11 @@ export default function Page() {
 							/>
 						</div>
 
-						<h2 className="text-xl font-semibold mb-2">{item.title}</h2>
+						<h2 className="mb-2 text-xl font-semibold">{item.title}</h2>
 
-						<p className="text-gray-700 mb-2">{item.excerpt}</p>
+						<p className="mb-2 text-gray-700">{item.excerpt}</p>
 
-						<span className="text-gray-500 text-sm block mb-4">
+						<span className="mb-4 block text-sm text-gray-500">
 							{item.date}
 						</span>
 

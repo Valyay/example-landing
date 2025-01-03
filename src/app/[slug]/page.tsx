@@ -16,10 +16,10 @@ export default async function NewPage({
 	const article = getNewsBySlug(slug);
 
 	return (
-		<div className="max-w-3xl mx-auto px-4 py-8">
-			<h1 className="text-3xl font-bold mb-4">{article.title}</h1>
+		<div className="mx-auto max-w-3xl px-4 py-8">
+			<h1 className="mb-4 text-3xl font-bold">{article.title}</h1>
 			<div className="mb-6 text-gray-600">
-				<span className="text-sm mr-2">{article.date}</span>
+				<span className="mr-2 text-sm">{article.date}</span>
 			</div>
 
 			<div className="mb-6">
