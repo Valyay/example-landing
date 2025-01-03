@@ -4,8 +4,8 @@
     "paths": {
       "@/styles/*": ["styles/*"],
       "@/components/*": ["components/*"],
-      "@/lib/*": ["lib/*"]
-
+      "@/lib/*": ["lib/*"],
+      "@/content/*": ["content/*"]
     },
     "target": "es2022",
     "lib": ["dom", "dom.iterable", "esnext"],

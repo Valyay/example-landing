@@ -1,6 +1,7 @@
 import React from "react";
 import { getAllNews, getNewsBySlug } from "@/lib/news";
 import Image from "next/image";
+import md from "markdown-it";
 
 export async function generateStaticParams() {
 	const news = getAllNews();
@@ -32,9 +33,9 @@ export default async function NewPage({
 				/>
 			</div>
 
-			<article className="prose prose-base whitespace-pre-wrap">
-				{article.content}
-			</article>
+			<article
+				dangerouslySetInnerHTML={{ __html: md().render(article.content) }}
+				className="prose prose-base whitespace-pre-wrap"></article>
 		</div>
 	);
 }
