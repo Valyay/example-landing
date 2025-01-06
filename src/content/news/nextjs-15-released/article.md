@@ -2,7 +2,6 @@
 title: "Breaking News: Next.js 15 Released!"
 excerpt: "Next.js 15 brings exciting new features, including the new app router..."
 date: "2025-01-01"
-imageUrl: "https://via.placeholder.com/800x400?text=Next.js+15"
 ---
 
 Next.js 15 introduces exciting advancements for developers, such as:

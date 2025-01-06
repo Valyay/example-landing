@@ -2,7 +2,6 @@
 title: "Tech Trends in 2025"
 excerpt: "Discover the top tech trends shaping the future of web development..."
 date: "2025-01-02"
-imageUrl: "https://via.placeholder.com/800x400?text=Tech+Trends"
 ---
 
 As we step into 2025, here are the key tech trends to watch:

@@ -2,7 +2,6 @@
 title: "Tailwind CSS 4.0: What's New?"
 excerpt: "Tailwind CSS 4.0 introduces even more utility classes and improved performance..."
 date: "2025-01-03"
-imageUrl: "https://via.placeholder.com/800x400?text=Tailwind+4.0"
 ---
 
 Tailwind CSS 4.0 is here with some amazing updates:

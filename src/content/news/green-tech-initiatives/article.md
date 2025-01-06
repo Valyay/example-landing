@@ -2,7 +2,6 @@
 title: "Green Tech Initiatives in 2025"
 excerpt: "Technology meets sustainability. Here are the top green tech initiatives of the year..."
 date: "2025-01-07"
-imageUrl: "https://via.placeholder.com/800x400?text=Green+Tech"
 ---
 
 Green tech is shaping the future. Some of the most impactful initiatives this year include:

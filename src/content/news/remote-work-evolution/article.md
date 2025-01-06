@@ -2,7 +2,6 @@
 title: "The Evolution of Remote Work"
 excerpt: "Remote work has evolved significantly over the past few years. Here's what the future holds..."
 date: "2025-01-05"
-imageUrl: "https://via.placeholder.com/800x400?text=Remote+Work"
 ---
 
 Remote work is no longer a trend but the norm for many industries. Key changes include:

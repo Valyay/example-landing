@@ -1,12 +1,13 @@
 {
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "copy-content": "node ./src/scripts/copy-content.mjs",
+    "dev": "pnpm run copy-content && next dev",
+    "build": "pnpm run copy-content && next build",
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "prettier": "prettier --write src/**/*.{js,jsx,json,ts,tsx,scss,css,md}"
-  },
+  },  
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"
   },

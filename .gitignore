@@ -53,3 +53,5 @@ Thumbs.db
 # Prettier
 .prettiercache
 
+
+/public/images/
