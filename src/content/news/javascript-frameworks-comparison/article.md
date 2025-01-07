@@ -1,6 +1,5 @@
 ---
 title: "A 2025 Comparison of JavaScript Frameworks"
-excerpt: "Which JavaScript framework should you use in 2025? Let’s explore the pros and cons of React, Vue, and SolidJS..."
 date: "2025-01-06"
 ---
 

@@ -1,34 +1,57 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import imageSize from "image-size";
 
 export interface NewsMeta {
 	slug: string;
 	title: string;
-	excerpt: string;
 	date: string;
-	imageUrl?: string;
+	image?: {
+		url: string;
+		width: number;
+		height: number;
+	};
 }
 
 export interface NewsContent extends NewsMeta {
 	content: string;
 }
 
-const newsDirectory = path.join(process.cwd(), "src", "content", "news");
-
 const publicImageBasePath = "/images";
+const newsDirectory = path.join(process.cwd(), "src", "content", "news");
+const imageExtensions = [".png", ".jpg", ".jpeg", ".gif", ".webp", ".avif"];
 
-function findImage(slug: string): string | undefined {
+function getImageDimensions(imagePath: string): {
+	width: number;
+	height: number;
+} {
+	const { width, height } = imageSize(imagePath);
+	return { width: width || 0, height: height || 0 };
+}
+
+function findImage(slug: string):
+	| {
+			url: string;
+			width: number;
+			height: number;
+	  }
+	| undefined {
 	const publicImagePath = path.join("public", "images", slug, "assets");
-	const imageExtensions = [".png", ".jpg", ".jpeg", ".gif", ".webp", ".avif"];
 
 	for (const ext of imageExtensions) {
 		const imagePath = path.join(publicImagePath, `title${ext}`);
 		if (fs.existsSync(imagePath)) {
-			return `${publicImageBasePath}/${slug}/assets/title${ext}`;
+			const dimensions = getImageDimensions(imagePath);
+			if (dimensions) {
+				return {
+					url: `${publicImageBasePath}/${slug}/assets/title${ext}`,
+					width: dimensions.width,
+					height: dimensions.height,
+				};
+			}
 		}
 	}
-	return undefined;
 }
 
 export function getAllNews(): NewsMeta[] {
@@ -48,14 +71,13 @@ export function getAllNews(): NewsMeta[] {
 		const fileContent = fs.readFileSync(articlePath, "utf-8");
 		const { data } = matter(fileContent);
 
-		const imageUrl = findImage(folderName);
+		const image = findImage(folderName);
 
 		return {
 			slug: folderName,
 			title: data.title || "Untitled",
-			excerpt: data.excerpt || "No description",
 			date: data.date || "Unknown date",
-			imageUrl,
+			image,
 		} as NewsMeta;
 	});
 
@@ -73,14 +95,13 @@ export function getNewsBySlug(slug: string): NewsContent {
 	const fileContent = fs.readFileSync(articlePath, "utf-8");
 	const { data, content } = matter(fileContent);
 
-	const imageUrl = findImage(slug);
+	const image = findImage(slug);
 
 	return {
 		slug,
 		title: data.title || "Untitled",
-		excerpt: data.excerpt || "No description",
 		date: data.date || "Unknown date",
-		imageUrl,
+		image,
 		content,
 	} as NewsContent;
 }

@@ -1,6 +1,5 @@
 ---
 title: "Tailwind CSS 4.0: What's New?"
-excerpt: "Tailwind CSS 4.0 introduces even more utility classes and improved performance..."
 date: "2025-01-03"
 ---
 

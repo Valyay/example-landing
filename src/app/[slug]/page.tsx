@@ -23,18 +23,16 @@ export default async function NewPage({
 				<span className="mr-2 text-sm">{article.date}</span>
 			</div>
 
-			{article.imageUrl ? (
+			{article.image && (
 				<div className="mb-6">
 					<Image
-						src={article.imageUrl}
+						src={article.image.url}
 						alt={article.title}
-						width={800}
-						height={400}
+						width={article.image.width}
+						height={article.image.height}
 						className="rounded shadow"
 					/>
 				</div>
-			) : (
-				<p className="italic text-gray-500">Image does not exist</p>
 			)}
 
 			<article

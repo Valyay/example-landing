@@ -1,6 +1,5 @@
 ---
 title: "Tech Trends in 2025"
-excerpt: "Discover the top tech trends shaping the future of web development..."
 date: "2025-01-02"
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: "The Evolution of Remote Work"
-excerpt: "Remote work has evolved significantly over the past few years. Here's what the future holds..."
 date: "2025-01-05"
 ---
 

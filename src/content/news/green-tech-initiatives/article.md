@@ -1,6 +1,5 @@
 ---
 title: "Green Tech Initiatives in 2025"
-excerpt: "Technology meets sustainability. Here are the top green tech initiatives of the year..."
 date: "2025-01-07"
 ---
 
