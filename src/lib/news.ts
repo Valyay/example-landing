@@ -16,6 +16,21 @@ export interface NewsContent extends NewsMeta {
 
 const newsDirectory = path.join(process.cwd(), "src", "content", "news");
 
+const publicImageBasePath = "/images";
+
+function findImage(slug: string): string | undefined {
+	const publicImagePath = path.join("public", "images", slug, "assets");
+	const imageExtensions = [".png", ".jpg", ".jpeg", ".gif", ".webp", ".avif"];
+
+	for (const ext of imageExtensions) {
+		const imagePath = path.join(publicImagePath, `title${ext}`);
+		if (fs.existsSync(imagePath)) {
+			return `${publicImageBasePath}/${slug}/assets/title${ext}`;
+		}
+	}
+	return undefined;
+}
+
 export function getAllNews(): NewsMeta[] {
 	const articleFolders = fs
 		.readdirSync(newsDirectory)
@@ -25,29 +40,21 @@ export function getAllNews(): NewsMeta[] {
 
 	const allNews = articleFolders.map((folderName) => {
 		const articlePath = path.join(newsDirectory, folderName, "article.md");
-		const assetsPath = path.join(
-			newsDirectory,
-			folderName,
-			"assets",
-			"title.png",
-		);
 
 		if (!fs.existsSync(articlePath)) {
-			throw new Error(`Файл статьи не найден: ${articlePath}`);
+			throw new Error(`Article file not found: ${articlePath}`);
 		}
 
 		const fileContent = fs.readFileSync(articlePath, "utf-8");
 		const { data } = matter(fileContent);
 
-		const imageUrl = fs.existsSync(assetsPath)
-			? `/${folderName}/assets/title.png`
-			: undefined;
+		const imageUrl = findImage(folderName);
 
 		return {
 			slug: folderName,
-			title: data.title || "Без названия",
-			excerpt: data.excerpt || "Без описания",
-			date: data.date || "Неизвестная дата",
+			title: data.title || "Untitled",
+			excerpt: data.excerpt || "No description",
+			date: data.date || "Unknown date",
 			imageUrl,
 		} as NewsMeta;
 	});
@@ -58,24 +65,21 @@ export function getAllNews(): NewsMeta[] {
 export function getNewsBySlug(slug: string): NewsContent {
 	const folderPath = path.join(newsDirectory, slug);
 	const articlePath = path.join(folderPath, "article.md");
-	const assetsPath = path.join(folderPath, "assets", "title.png");
 
 	if (!fs.existsSync(articlePath)) {
-		throw new Error(`Файл статьи не найден: ${articlePath}`);
+		throw new Error(`Article file not found: ${articlePath}`);
 	}
 
 	const fileContent = fs.readFileSync(articlePath, "utf-8");
 	const { data, content } = matter(fileContent);
 
-	const imageUrl = fs.existsSync(assetsPath)
-		? `/${slug}/assets/title.png`
-		: undefined;
+	const imageUrl = findImage(slug);
 
 	return {
 		slug,
-		title: data.title || "Без названия",
-		excerpt: data.excerpt || "Без описания",
-		date: data.date || "Неизвестная дата",
+		title: data.title || "Untitled",
+		excerpt: data.excerpt || "No description",
+		date: data.date || "Unknown date",
 		imageUrl,
 		content,
 	} as NewsContent;
