@@ -1,6 +1,7 @@
 ---
 title: "Green Tech Initiatives in 2025"
 date: "2025-01-07"
+description: "An overview of the most impactful green tech initiatives in 2025, focusing on carbon-neutral data centers, energy-efficient AI, and electronics recycling."
 ---
 
 Green tech is shaping the future. Some of the most impactful initiatives this year include:

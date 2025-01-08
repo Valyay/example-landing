@@ -1,6 +1,7 @@
 ---
 title: "Tech Trends in 2025"
 date: "2025-01-02"
+description: "An overview of the key technology trends to watch in 2025, including AI-driven development, edge computing, and WebAssembly."
 ---
 
 As we step into 2025, here are the key tech trends to watch:

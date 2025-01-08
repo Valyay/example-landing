@@ -1,6 +1,7 @@
 ---
 title: "Tailwind CSS 4.0: What's New?"
 date: "2025-01-03"
+description: "Discover the latest features and improvements in Tailwind CSS 4.0, including CSS Grid enhancements, improved performance, and dark mode support."
 ---
 
 Tailwind CSS 4.0 is here with some amazing updates:

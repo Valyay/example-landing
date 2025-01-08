@@ -1,6 +1,7 @@
 ---
 title: "The Evolution of Remote Work"
 date: "2025-01-05"
+description: "Explore the transformation of remote work, including hybrid models, global talent pools, and advanced collaboration tools."
 ---
 
 Remote work is no longer a trend but the norm for many industries. Key changes include:

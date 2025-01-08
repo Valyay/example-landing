@@ -7,6 +7,7 @@ export interface NewsMeta {
 	slug: string;
 	title: string;
 	date: string;
+	description: string;
 	image?: {
 		url: string;
 		width: number;
@@ -75,6 +76,7 @@ export function getAllNews(): NewsMeta[] {
 
 		return {
 			slug: folderName,
+			description: data.description || "Description",
 			title: data.title || "Untitled",
 			date: data.date || "Unknown date",
 			image,
@@ -100,6 +102,7 @@ export function getNewsBySlug(slug: string): NewsContent {
 	return {
 		slug,
 		title: data.title || "Untitled",
+		description: data.description || "Description",
 		date: data.date || "Unknown date",
 		image,
 		content,
