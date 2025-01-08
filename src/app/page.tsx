@@ -8,14 +8,14 @@ export default function Page() {
 
 	return (
 		<>
-			<h1 className="mb-6 text-3xl font-bold">Latest News</h1>
+			<h1 className="mb-6 text-4xl font-bold">Latest News</h1>
 			<ul className="space-y-6">
 				{news.map((item: NewsMeta) => (
 					<li key={item.slug}>
 						<Link
 							href={`/${item.slug}`}
 							className="block rounded-lg bg-white p-4 shadow transition-[transform,box-shadow] duration-200 ease-in-out hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
-							<h2 className="mb-2 text-xl font-semibold">{item.title}</h2>
+							<h2 className="mb-2 text-2xl font-semibold">{item.title}</h2>
 							{item.image ? (
 								<div className="mb-6">
 									<Image

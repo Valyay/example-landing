@@ -20,7 +20,7 @@ export default async function NewPage({
 		<>
 			<h1 className="mb-4 text-3xl font-bold">{article.title}</h1>
 			<div className="mb-6 text-gray-600">
-				<span className="mr-2 text-sm">{article.date}</span>
+				<span className="mr-2 text-lg">{article.date}</span>
 			</div>
 
 			{article.image && (
