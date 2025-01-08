@@ -90,6 +90,10 @@ export function getNewsBySlug(slug: string): NewsContent {
 	const folderPath = path.join(newsDirectory, slug);
 	const articlePath = path.join(folderPath, "article.md");
 
+	if (!fs.existsSync(folderPath) || !fs.statSync(folderPath).isDirectory()) {
+		throw new Error(`Folder not found or not a directory: ${folderPath}`);
+	}
+
 	if (!fs.existsSync(articlePath)) {
 		throw new Error(`Article file not found: ${articlePath}`);
 	}
