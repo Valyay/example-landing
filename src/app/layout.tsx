@@ -23,7 +23,9 @@ export default function RootLayout({
 		<html lang="en" className={inter.className}>
 			<body className="flex min-h-screen flex-col bg-gray-100">
 				<Header />
-				<main className="mx-auto max-w-3xl grow px-4 py-8">{children}</main>
+				<main className="w-full grow p-8 md:px-20 lg:px-32">
+					<div className="mx-auto max-w-7xl">{children}</div>
+				</main>
 				<Footer />
 			</body>
 		</html>
