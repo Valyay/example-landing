@@ -156,6 +156,94 @@ description: "A brief description of your article."
 
 1. **Add Content**: Below the front matter, write the main content of your article using Markdown. You can include headings, paragraphs, lists, images, and more.
 
+#### Headings
+
+Use `#` for headings. The number of `#` symbols indicates the level of the heading.
+
+```markdown
+# Heading 1
+
+## Heading 2
+
+### Heading 3
+```
+
+#### Bold and Italic
+
+Use `**` or `__` for bold text and `_` or `*` for italic text.
+
+```markdown
+**Bold Text**
+**Bold Text**
+
+_Italic Text_
+_Italic Text_
+```
+
+#### Lists
+
+Use `-` or `*` for unordered lists and numbers for ordered lists.
+
+```markdown
+- Item 1
+- Item 2
+  - Subitem 1
+  - Subitem 2
+
+1. First item
+2. Second item
+   1. Subitem 1
+   2. Subitem 2
+```
+
+#### Links
+
+Use `[Link Text](URL)` to create a hyperlink.
+
+```markdown
+[Example Link](https://example.com)
+```
+
+#### Images
+
+Use `![Alt Text](URL)` to add images.
+
+```markdown
+![Sample Image](./assets/sample-image.jpg)
+```
+
+#### Blockquotes
+
+Use `>` to create blockquotes.
+
+```markdown
+> This is a blockquote.
+```
+
+#### Code
+
+Use backticks `` ` `` for inline code and triple backticks ` ``` ` for code blocks.
+
+```markdown
+Inline `code`
+```
+
+Code block
+
+```
+
+```
+
+#### Horizontal Rule
+
+Use `---` or `***` to create a horizontal rule.
+
+```markdown
+---
+```
+
+You can read more about markdown syntax at the ![link](https://www.markdownguide.org/basic-syntax/)
+
 ### Step 6: Add Images (Optional)
 
 1. **Create an Assets Folder**: Inside your article's folder, create a subfolder named `assets`.
@@ -169,6 +257,73 @@ description: "A brief description of your article."
 
 - If you want to specify a title image for your article, name the image file `title` followed by the appropriate extension (e.g., `title.jpg`, `title.png`) and place it inside the `assets` folder. This image will be used as the main image for your article.
 
+**Other Images**:
+
+- Any other images you want to include in your article should also be placed in the assets folder. You can reference these images in your Markdown content using the syntax mentioned above.
+
+### Step 7: Supported Image Extensions
+
+The supported image extensions for this project are:
+
+- .jpg
+- .jpeg
+- .png
+- .gif
+- .webp
+- .avif
+
+### Step 8: Image Ratio Recommendations
+
+For the best visual appearance, it is recommended to use images with the following aspect ratios:
+
+- **Title Image**: 16:9 or 4:3
+- **Other Images**: 16:9 or 4:3 or 1:1
+
+### Step 9: Save and Commit
+
+1. **Save Your Changes**: Make sure all your changes are saved.
+2. **Check Git Status**: Check the status of your changes using:
+
+   ```bash
+   git status
+   ```
+
+3. **Add Changes**: Add your new folder and its contents to the staging area:
+
+   ```bash
+   git add src/content/news/my-new-article
+   ```
+
+4. **Commit Changes**: Commit your changes with a descriptive message:
+
+   ```bash
+   git commit -m "Add new article: My New Article"
+   ```
+
+### Step 10: Push to Repository
+
+1. **Push Changes**: Push your committed changes to the remote repository:
+
+   ```bash
+   git push origin add-new-article
+   ```
+
+### Step 11: Create a Pull Request
+
+1. **Open GitHub**: Go to your repository on GitHub.
+2. **Create Pull Request**: Click on the "Compare & pull request" button to create a new pull request for your branch.
+3. **Submit Pull Request**: Fill in the details and submit the pull request for review.
+
+### Step 12: Verify on Website
+
+1. **Check the Website**: Once your changes are merged and deployed, visit the website to verify that your new article appears correctly.
+
+**Where the Title Image Will Be Shown**:
+
+- The title image will be displayed prominently at the top of the article page.
+- It will also appear as a thumbnail in the list of articles on the main news page.
+- Additionally, the title image will be used in the metadata for SEO purposes, which helps search engines understand the content of your article.
+
 ### Common Errors and How to Fix Them
 
 When you commit changes, you may see error messages in the terminal. This means that you are not adding a new article correctly.
@@ -178,7 +333,9 @@ When you commit changes, you may see error messages in the terminal. This means 
 **Error Message**:
 
 ```
+
 [ERROR] Missing "article.md" in folder: my-new-article
+
 ```
 
 **What It Means**:
