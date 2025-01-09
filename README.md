@@ -242,7 +242,7 @@ Use `---` or `***` to create a horizontal rule.
 ---
 ```
 
-You can read more about markdown syntax at the ![link](https://www.markdownguide.org/basic-syntax/)
+You can read more about markdown syntax at the [link](https://www.markdownguide.org/basic-syntax/)
 
 ### Step 6: Add Images (Optional)
 
