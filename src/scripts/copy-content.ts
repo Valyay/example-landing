@@ -1,14 +1,15 @@
 import fs from "fs";
 import path from "path";
+import { IMAGE_EXTENSIONS } from "../constants";
 
-function deleteFolderSync(folderPath) {
+function deleteFolderSync(folderPath: string) {
 	if (fs.existsSync(folderPath)) {
 		fs.rmSync(folderPath, { recursive: true, force: true });
 		console.log(`Deleted folder: ${folderPath}`);
 	}
 }
 
-function copyImagesSync(src, dest) {
+function copyImagesSync(src: string, dest: string) {
 	if (!fs.existsSync(dest)) {
 		fs.mkdirSync(dest, { recursive: true });
 	}
@@ -22,7 +23,9 @@ function copyImagesSync(src, dest) {
 		if (entry.isDirectory()) {
 			copyImagesSync(srcPath, destPath);
 		} else {
-			if (/\.(png|jpg|jpeg|webp|gif)$/i.test(entry.name)) {
+			if (
+				IMAGE_EXTENSIONS.some((ext) => entry.name.toLowerCase().endsWith(ext))
+			) {
 				fs.copyFileSync(srcPath, destPath);
 				console.log(`Copied image: ${srcPath} -> ${destPath}`);
 			}

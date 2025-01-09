@@ -16,7 +16,7 @@ export async function generateMetadata({
 	params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
 	const { slug } = await params;
-	const { title, description, date, content, image } = getNewsBySlug(slug);
+	const { title, description, date, content, titleImage } = getNewsBySlug(slug);
 
 	return {
 		title: title,
@@ -27,12 +27,12 @@ export async function generateMetadata({
 			type: "article",
 			publishedTime: date,
 			url: `${ENDPOINT}${slug}`,
-			images: image
+			images: titleImage
 				? [
 						{
-							url: image.url,
-							width: image.width,
-							height: image.height,
+							url: titleImage.url,
+							width: titleImage.width,
+							height: titleImage.height,
 							alt: title,
 						},
 					]
@@ -56,13 +56,13 @@ export default async function NewsPage({
 				<span className="mr-2 text-lg">{article.date}</span>
 			</div>
 
-			{article.image && (
+			{article.titleImage && (
 				<div className="mb-6">
 					<Image
-						src={article.image.url}
+						src={article.titleImage.url}
 						alt={article.title}
-						width={article.image.width}
-						height={article.image.height}
+						width={article.titleImage.width}
+						height={article.titleImage.height}
 						className="rounded shadow"
 					/>
 				</div>

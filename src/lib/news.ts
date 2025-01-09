@@ -2,17 +2,23 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import imageSize from "image-size";
+import { IMAGE_EXTENSIONS } from "../constants";
 
 export interface NewsMeta {
 	slug: string;
 	title: string;
 	date: string;
 	description: string;
-	image?: {
+	titleImage?: {
 		url: string;
 		width: number;
 		height: number;
 	};
+	otherImages?: {
+		url: string;
+		width: number;
+		height: number;
+	}[];
 }
 
 export interface NewsContent extends NewsMeta {
@@ -21,38 +27,75 @@ export interface NewsContent extends NewsMeta {
 
 const publicImageBasePath = "/images";
 const newsDirectory = path.join(process.cwd(), "src", "content", "news");
-const imageExtensions = [".png", ".jpg", ".jpeg", ".gif", ".webp", ".avif"];
 
-function getImageDimensions(imagePath: string): {
-	width: number;
-	height: number;
-} {
+function getImageDimensions(imagePath: string) {
 	const { width, height } = imageSize(imagePath);
 	return { width: width || 0, height: height || 0 };
 }
 
-function findImage(slug: string):
-	| {
-			url: string;
-			width: number;
-			height: number;
-	  }
-	| undefined {
+function replaceLocalAssetsPath(content: string, slug: string): string {
+	const pattern = /\]\(\.\/assets\//g;
+	return content.replace(pattern, `](${publicImageBasePath}/${slug}/assets/`);
+}
+
+function findTitleImage(
+	slug: string,
+): { url: string; width: number; height: number } | undefined {
 	const publicImagePath = path.join("public", "images", slug, "assets");
 
-	for (const ext of imageExtensions) {
+	if (!fs.existsSync(publicImagePath)) {
+		return undefined;
+	}
+
+	for (const ext of IMAGE_EXTENSIONS) {
 		const imagePath = path.join(publicImagePath, `title${ext}`);
 		if (fs.existsSync(imagePath)) {
-			const dimensions = getImageDimensions(imagePath);
-			if (dimensions) {
-				return {
-					url: `${publicImageBasePath}/${slug}/assets/title${ext}`,
-					width: dimensions.width,
-					height: dimensions.height,
-				};
-			}
+			const { width, height } = getImageDimensions(imagePath);
+			return {
+				url: `${publicImageBasePath}/${slug}/assets/title${ext}`,
+				width,
+				height,
+			};
 		}
 	}
+
+	return undefined;
+}
+
+function findOtherImages(
+	slug: string,
+): { url: string; width: number; height: number }[] {
+	const publicImagePath = path.join("public", "images", slug, "assets");
+	const images: { url: string; width: number; height: number }[] = [];
+
+	if (!fs.existsSync(publicImagePath)) {
+		return images;
+	}
+
+	const files = fs.readdirSync(publicImagePath);
+	for (const file of files) {
+		const ext = path.extname(file).toLowerCase();
+
+		if (!IMAGE_EXTENSIONS.includes(ext)) {
+			continue;
+		}
+
+		if (file.toLowerCase().startsWith("title")) {
+			continue;
+		}
+
+		const fullPath = path.join(publicImagePath, file);
+		if (fs.existsSync(fullPath)) {
+			const { width, height } = getImageDimensions(fullPath);
+			images.push({
+				url: `${publicImageBasePath}/${slug}/assets/${file}`,
+				width,
+				height,
+			});
+		}
+	}
+
+	return images;
 }
 
 export function getAllNews(): NewsMeta[] {
@@ -62,8 +105,8 @@ export function getAllNews(): NewsMeta[] {
 			fs.statSync(path.join(newsDirectory, folder)).isDirectory(),
 		);
 
-	const allNews = articleFolders.map((folderName) => {
-		const articlePath = path.join(newsDirectory, folderName, "article.md");
+	const allNews = articleFolders.map((slug) => {
+		const articlePath = path.join(newsDirectory, slug, "article.md");
 
 		if (!fs.existsSync(articlePath)) {
 			throw new Error(`Article file not found: ${articlePath}`);
@@ -71,15 +114,15 @@ export function getAllNews(): NewsMeta[] {
 
 		const fileContent = fs.readFileSync(articlePath, "utf-8");
 		const { data } = matter(fileContent);
-
-		const image = findImage(folderName);
-
+		const titleImage = findTitleImage(slug);
+		const otherImages = findOtherImages(slug);
 		return {
-			slug: folderName,
+			slug,
 			description: data.description || "Description",
 			title: data.title || "Untitled",
 			date: data.date || "Unknown date",
-			image,
+			titleImage,
+			otherImages,
 		} as NewsMeta;
 	});
 
@@ -100,15 +143,17 @@ export function getNewsBySlug(slug: string): NewsContent {
 
 	const fileContent = fs.readFileSync(articlePath, "utf-8");
 	const { data, content } = matter(fileContent);
-
-	const image = findImage(slug);
+	const titleImage = findTitleImage(slug);
+	const otherImages = findOtherImages(slug);
+	const updatedContent = replaceLocalAssetsPath(content, slug);
 
 	return {
 		slug,
 		title: data.title || "Untitled",
 		description: data.description || "Description",
 		date: data.date || "Unknown date",
-		image,
-		content,
+		titleImage,
+		otherImages,
+		content: updatedContent,
 	} as NewsContent;
 }

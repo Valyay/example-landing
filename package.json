@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "copy-content": "node ./src/scripts/copy-content.mjs",
+    "copy-content": "ts-node -p tsconfig.json ./src/scripts/copy-content.ts",
     "dev": "pnpm run copy-content && next dev",
     "build": "pnpm run copy-content && next build",
     "start": "next start",
@@ -40,6 +40,7 @@
     "prettier-plugin-tailwindcss": "^0.6.9",
     "simple-git-hooks": "^2.11.1",
     "tailwindcss": "^3.4.17",
+    "ts-node": "^10.9.2",
     "typescript": "5.7.2"
   }
 }
