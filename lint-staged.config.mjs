@@ -10,10 +10,13 @@ const buildPrettierCommand = (filenames) =>
 
 const buildTscCommand = () => `tsc -p tsconfig.json --noEmit`;
 
+const buildCheckArticlesCommand = () => `pnpm run check-articles`;
+
 const config = {
 	"*.{ts,tsx}": [buildTscCommand, buildPrettierCommand],
 	"*.{js,mjs,jsx}": [buildPrettierCommand, buildEslintCommand],
 	"*.{json,md,mdx,html,css}": [buildPrettierCommand],
+	"src/content/news/**/*": [buildCheckArticlesCommand],
 };
 
 export default config;
