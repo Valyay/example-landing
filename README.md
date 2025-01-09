@@ -201,7 +201,17 @@ Every article folder needs a file named `article.md`. This file holds all the te
    This is where your article text goes.
    ```
 
-3. Save and commit the file.
+3. Add the corrected files to your commit:
+
+   ```bash
+   git add .
+   ```
+
+4. Try committing again:
+
+   ```bash
+   git commit -m "Your commit message"
+   ```
 
 #### 2. Missing Front Matter Fields
 
@@ -228,7 +238,17 @@ The `article.md` file needs a section at the top called **front matter** with `t
    ---
    ```
 
-2. Save and commit your changes.
+2. Add the corrected files to your commit:
+
+   ```bash
+   git add .
+   ```
+
+3. Try committing again:
+
+   ```bash
+   git commit -m "Your commit message"
+   ```
 
 #### 3. Images Outside the `assets` Folder
 
@@ -251,6 +271,18 @@ All images must be stored inside the `assets` folder within your article directo
    ![Example](./assets/example.jpg)
    ```
 
+4. Add the corrected files to your commit:
+
+   ```bash
+   git add .
+   ```
+
+5. Try committing again:
+
+   ```bash
+   git commit -m "Your commit message"
+   ```
+
 #### 4. Missing or Multiple Title Images
 
 **Error Messages**:
@@ -267,6 +299,17 @@ Each article must have **one** main image named `title` (e.g., `title.jpg`).
 
 1. Ensure you have exactly one file named `title` in the `assets` folder.
 2. Delete or rename extra files.
+3. Add the corrected files to your commit:
+
+   ```bash
+   git add .
+   ```
+
+4. Try committing again:
+
+   ```bash
+   git commit -m "Your commit message"
+   ```
 
 #### 5. Unsupported Image File Type
 
@@ -283,6 +326,17 @@ We only allow these image formats: `.jpg, .jpeg, .png, .gif, .webp, .avif`.
 
 1. Convert the image to a supported format.
 2. Replace the original file with the converted image.
+3. Add the corrected files to your commit:
+
+   ```bash
+   git add .
+   ```
+
+4. Try committing again:
+
+   ```bash
+   git commit -m "Your commit message"
+   ```
 
 #### 6. Invalid Folder Name
 
@@ -298,7 +352,17 @@ Folder names must use lowercase letters, numbers, and hyphens (e.g., `my-article
 **How to Fix**:
 
 1. Rename the folder to use only allowed characters.
-2. Save and commit your changes.
+2. Add the corrected files to your commit:
+
+   ```bash
+   git add .
+   ```
+
+3. Try committing again:
+
+   ```bash
+   git commit -m "Your commit message"
+   ```
 
 ---
 
